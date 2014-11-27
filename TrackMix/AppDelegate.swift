@@ -46,15 +46,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             floatValue = self.slider.floatValue
         }
         
-        self.track.volume = floatValue
+        self.track?.volume = floatValue
         self.updateUserInterface()
         
         NSLog("%@ sent takeFloatValueForVolumeFrom: with value %1.2f", senderName, floatValue)
     }
     
     func updateUserInterface() {
-        self.textField.floatValue = track.volume
-        self.slider.floatValue = track.volume
+        if let newVolume = track?.volume {
+            self.textField.floatValue = newVolume
+            self.slider.floatValue = newVolume
+        }
     }
 }
 
