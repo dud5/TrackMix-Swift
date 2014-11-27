@@ -18,7 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var track: Track!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        track = Track()
+        self.track = Track()
+        self.track.volume = 0.0
+        self.updateUserInterface()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -28,6 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func mute(sender: NSButton) {
         NSLog("Received a mute: message")
+        self.track.volume = 0.0
+        self.updateUserInterface()
     }
     
     @IBAction func takeFloatValueForVolumeFrom(sender: AnyObject) {
@@ -42,7 +46,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             floatValue = self.slider.floatValue
         }
         
+        self.track.volume = floatValue
+        self.updateUserInterface()
+        
         NSLog("%@ sent takeFloatValueForVolumeFrom: with value %1.2f", senderName, floatValue)
+    }
+    
+    func updateUserInterface() {
+        self.textField.floatValue = track.volume
+        self.slider.floatValue = track.volume
     }
 }
 
