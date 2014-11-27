@@ -32,14 +32,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func takeFloatValueForVolumeFrom(sender: AnyObject) {
         var senderName: String
-        if (sender as NSObject == self.textField) {
-        senderName = "textfield"
+        var floatValue: Float
+        if sender as NSObject == self.textField {
+            senderName = "textfield"
+            floatValue = self.textField.floatValue
         }
         else {
             senderName = "slider"
+            floatValue = self.slider.floatValue
         }
         
-        NSLog("%@ sent takeFloatValueForVolumeFrom: with value %1.2f", senderName, slider.floatValue)
+        NSLog("%@ sent takeFloatValueForVolumeFrom: with value %1.2f", senderName, floatValue)
     }
 }
 
