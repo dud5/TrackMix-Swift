@@ -671,14 +671,18 @@
         <window title="TrackMix" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="321" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="307" height="337"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <value key="minSize" type="size" width="190" height="330"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="307" height="337"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ta5-Ny-kfB">
-                        <rect key="frame" x="119" y="13" width="72" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ta5-Ny-kfB">
+                        <rect key="frame" x="117" y="1" width="72" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="zYW-DI-8aR"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Mute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WPM-bB-MEo">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -687,9 +691,27 @@
                             <action selector="mute:" target="Voe-Tx-rLC" id="k68-gw-qT8"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emf-rw-TkN">
-                        <rect key="frame" x="112" y="318" width="96" height="22"/>
+                    <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-P3-qnW">
+                        <rect key="frame" x="143" y="46" width="21" height="243"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="237" id="MOH-Ax-vLU"/>
+                        </constraints>
+                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="11" doubleValue="5" tickMarkPosition="right" sliderType="linear" id="3HO-rn-WSD"/>
+                        <connections>
+                            <action selector="takeFloatValueForVolumeFrom:" target="Voe-Tx-rLC" id="HMN-P7-Cs1"/>
+                        </connections>
+                    </slider>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Emf-rw-TkN">
+                        <rect key="frame" x="105" y="307" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="2C1-Lt-o6Z"/>
+                            <constraint firstAttribute="width" constant="96" id="Q5X-tj-qVR"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="5" drawsBackground="YES" id="1oJ-OV-viW">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="2" id="BLT-fV-eCU">
+                                <real key="minimum" value="0.0"/>
+                                <real key="maximum" value="11"/>
+                            </numberFormatter>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -698,16 +720,18 @@
                             <action selector="takeFloatValueForVolumeFrom:" target="Voe-Tx-rLC" id="58G-eM-oeo"/>
                         </connections>
                     </textField>
-                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-P3-qnW">
-                        <rect key="frame" x="150" y="58" width="21" height="243"/>
-                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="11" doubleValue="5" tickMarkPosition="right" sliderType="linear" id="3HO-rn-WSD"/>
-                        <connections>
-                            <action selector="takeFloatValueForVolumeFrom:" target="Voe-Tx-rLC" id="HMN-P7-Cs1"/>
-                        </connections>
-                    </slider>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="1tN-P3-qnW" firstAttribute="centerX" secondItem="Emf-rw-TkN" secondAttribute="centerX" constant="0.5" id="Y6W-ag-TWk"/>
+                    <constraint firstItem="Emf-rw-TkN" firstAttribute="centerX" secondItem="ta5-Ny-kfB" secondAttribute="centerX" id="cv6-IU-I1H"/>
+                    <constraint firstAttribute="centerY" secondItem="Emf-rw-TkN" secondAttribute="centerY" constant="149" id="dbE-oG-6Xq"/>
+                    <constraint firstAttribute="centerY" secondItem="1tN-P3-qnW" secondAttribute="centerY" constant="-0.5" id="o6X-H4-8Xv"/>
+                    <constraint firstItem="ta5-Ny-kfB" firstAttribute="top" secondItem="1tN-P3-qnW" secondAttribute="bottom" constant="20" id="reM-tw-ic4"/>
+                    <constraint firstAttribute="centerX" secondItem="Emf-rw-TkN" secondAttribute="centerX" constant="0.5" id="vM8-8r-dVP"/>
+                    <constraint firstItem="1tN-P3-qnW" firstAttribute="top" secondItem="Emf-rw-TkN" secondAttribute="bottom" constant="20" id="w4R-MX-MCU"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="512.5" y="399"/>
+            <point key="canvasLocation" x="505.5" y="387.5"/>
         </window>
     </objects>
 </document>
